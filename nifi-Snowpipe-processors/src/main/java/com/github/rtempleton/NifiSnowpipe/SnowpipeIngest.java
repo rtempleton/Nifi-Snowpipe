@@ -70,12 +70,17 @@ public class SnowpipeIngest extends AbstractProcessor {
 			.displayName("Snowflake Region")
 			.description("Snowflake Region")
 			.allowableValues(new AllowableValue("snowflakecomputing.com", "AWS US West"),
-							new AllowableValue("us-east-1.snowflakecomputing.com", "AWS US East"),
-							new AllowableValue("eu-central-1.snowflakecomputing.com", "AWS EU (Frankfurt)"),
-							new AllowableValue("eu-west-1.snowflakecomputing.com", "AWS EU (Dublin)"),
-							new AllowableValue("ap-southeast-2.snowflakecomputing.com", "AWS Asia Pacific (Sydney)"),
-							new AllowableValue("east-us-2.azure.snowflakecomputing.com", "Azure East US 2"),
-							new AllowableValue("west-europe.azure.snowflakecomputing.com", "Azure West Europe"))
+					new AllowableValue("us-east-1.snowflakecomputing.com", "AWS US East"),
+					new AllowableValue("ca-central-1.snowflakecomputing.com", "AWS Canada (Central)"),
+					new AllowableValue("eu-central-1.snowflakecomputing.com", "AWS EU (Frankfurt)"),
+					new AllowableValue("eu-west-1.snowflakecomputing.com", "AWS EU (Dublin)"),
+					new AllowableValue("ap-southeast-1.snowflakecomputing.com", "AWS Asia Pacific (Singapore)"),
+					new AllowableValue("ap-southeast-2.snowflakecomputing.com", "AWS Asia Pacific (Sydney)"),
+					new AllowableValue("east-us-2.azure.snowflakecomputing.com", "Azure East US 2"),
+					new AllowableValue("us-gov-virginia.azure.snowflakecomputing.com", "Azure US Gov Virginia"),
+					new AllowableValue("canada-central.azure.snowflakecomputing.com", "Azure Canada Central"),
+					new AllowableValue("west-europe.azure.snowflakecomputing.com", "Azure West Europe"),
+					new AllowableValue("australia-east.azure.snowflakecomputing.com", "Azure Australia East"))
 			.required(true)
 			.addValidator(StandardValidators.NON_EMPTY_VALIDATOR)
 			.build();
