@@ -192,7 +192,7 @@ public class SnowpipeHistoryRange extends AbstractProcessor {
 			EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encoded);
 			final PrivateKey privateKey = kf.generatePrivate(keySpec);
 
-			SimpleIngestManager mgr = new SimpleIngestManager(account, user, pipe, privateKey, schemeName, host, portNum);
+			SimpleIngestManager mgr = new SimpleIngestManager(account, user, pipe, privateKey, schemeName, account+"."+host, portNum);
 			DateTime now = new DateTime();
 			DateTime then = now.minusMinutes(Math.abs(trailMin));
 			HistoryRangeResponse resp = mgr.getHistoryRange(null, then.toString(), now.toString());

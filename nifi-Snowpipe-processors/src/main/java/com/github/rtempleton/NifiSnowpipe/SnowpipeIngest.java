@@ -146,7 +146,7 @@ public class SnowpipeIngest extends AbstractProcessor {
 	private Set<Relationship> relationships;
 
 	//attributes
-	private static final String RESPONSE_ATT = "snowpipe.ingest.reponsecode";
+//	private static final String RESPONSE_ATT = "snowpipe.ingest.reponsecode";
 
 	@Override
 	protected void init(final ProcessorInitializationContext context) {
@@ -204,9 +204,9 @@ public class SnowpipeIngest extends AbstractProcessor {
 			final PrivateKey privateKey = kf.generatePrivate(keySpec);
 
 
-			SimpleIngestManager mgr = new SimpleIngestManager(account, user, pipe, privateKey, schemeName, host, portNum);
+			SimpleIngestManager mgr = new SimpleIngestManager(account, user, pipe, privateKey, schemeName, account+"."+host, portNum);
 			IngestResponse resp = mgr.ingestFile(new StagedFileWrapper(file), null);
-			flowFile = session.putAttribute(flowFile, RESPONSE_ATT, resp.getResponseCode());
+			//flowFile = session.putAttribute(flowFile, RESPONSE_ATT, resp.getResponseCode());
 			session.transfer(flowFile, REL_SUCCESS);
 
 		}catch(Exception e) {
