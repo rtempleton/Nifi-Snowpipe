@@ -74,7 +74,8 @@ public class SnowpipeHistoryRange extends AbstractProcessor {
 					new AllowableValue("us-gov-virginia.azure.snowflakecomputing.com", "Azure US Gov Virginia"),
 					new AllowableValue("canada-central.azure.snowflakecomputing.com", "Azure Canada Central"),
 					new AllowableValue("west-europe.azure.snowflakecomputing.com", "Azure West Europe"),
-					new AllowableValue("australia-east.azure.snowflakecomputing.com", "Azure Australia East"))
+					new AllowableValue("australia-east.azure.snowflakecomputing.com", "Azure Australia East"),
+					new AllowableValue("southeast-asia.azure.snowflakecomputing.com", "Southeast Asia"))
 			.required(true)
 			.addValidator(StandardValidators.NON_EMPTY_VALIDATOR)
 			.build();
