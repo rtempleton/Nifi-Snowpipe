@@ -28,6 +28,4 @@ The same configuration settings from the SnowpipeIngest processor plus the numbe
 ![snowpipe4.png](https://github.com/rtempleton/Nifi-Snowpipe/blob/master/img/snowpipe4.png)
 
 **Note:** </br>
-These processors have a dependency on the [snowflakedb/snowflake-ingest-java](https://github.com/snowflakedb/snowflake-ingest-java) github repo, however there is a an awaiting pull request for an outstanding bug. Until this request is merged, use the updated code repo [here](https://github.com/rtempleton/snowflake-ingest-java)
-
-Lastly, you can pull down a binary build of the NAR [here](https://www.dropbox.com/s/nnw52xecmxim5s9/nifi-Snowpipe-nar-1.0-SNAPSHOT.nar?dl=0). This is ready to use, just drop it into your appropriate lib directory and restart Nifi.
+Lastly, you can pull down an older binary build of the NAR [here](https://www.dropbox.com/s/nnw52xecmxim5s9/nifi-Snowpipe-nar-1.0-SNAPSHOT.nar?dl=0). This is ready to use, just drop it into your appropriate lib directory and restart Nifi.
