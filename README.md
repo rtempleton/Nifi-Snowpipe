@@ -10,8 +10,7 @@ Use the SnowpipeIngest processor in a workflow following the PostS3Object or Put
 ![snowpipe1.png](https://github.com/rtempleton/Nifi-Snowpipe/blob/master/img/snowpipe1.png)
 
 **Configuration**</br>
-- Specify your Snowflake region from the drop down list
-- Provide your account, user and FULLY QUALIFIED pipe name
+- Provide your FULLY QUALIFIED account, user and FULLY QUALIFIED pipe name
 - Cut/Paste the contents of the [unencrypted private key](https://docs.snowflake.net/manuals/user-guide/data-load-snowpipe-rest-gs.html#using-key-pair-authentication) used to configure the Snowpipe service
 - Use the `${filename}` Expression language reference to the file previously uploaded
 
