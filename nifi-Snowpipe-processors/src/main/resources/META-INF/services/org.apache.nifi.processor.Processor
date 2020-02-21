@@ -14,3 +14,4 @@
 # limitations under the License.
 com.github.rtempleton.NifiSnowpipe.SnowpipeIngest
 com.github.rtempleton.NifiSnowpipe.SnowpipeHistoryRange
+# com.github.rtempleton.NifiSnowpipe.SFPutInternalStage

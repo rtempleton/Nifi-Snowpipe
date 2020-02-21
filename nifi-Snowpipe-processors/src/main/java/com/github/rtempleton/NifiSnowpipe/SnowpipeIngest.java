@@ -65,31 +65,10 @@ public class SnowpipeIngest extends AbstractProcessor {
 	private static final int portNum = 443;
 
 	//properties
-	public static final PropertyDescriptor REGION = new PropertyDescriptor
-			.Builder().name("Region")
-			.displayName("Snowflake Region")
-			.description("Snowflake Region")
-			.allowableValues(new AllowableValue("snowflakecomputing.com", "AWS US West"),
-					new AllowableValue("us-east-1.snowflakecomputing.com", "AWS US East"),
-					new AllowableValue("ca-central-1.snowflakecomputing.com", "AWS Canada (Central)"),
-					new AllowableValue("eu-central-1.snowflakecomputing.com", "AWS EU (Frankfurt)"),
-					new AllowableValue("eu-west-1.snowflakecomputing.com", "AWS EU (Dublin)"),
-					new AllowableValue("ap-southeast-1.snowflakecomputing.com", "AWS Asia Pacific (Singapore)"),
-					new AllowableValue("ap-southeast-2.snowflakecomputing.com", "AWS Asia Pacific (Sydney)"),
-					new AllowableValue("east-us-2.azure.snowflakecomputing.com", "Azure East US 2"),
-					new AllowableValue("us-gov-virginia.azure.snowflakecomputing.com", "Azure US Gov Virginia"),
-					new AllowableValue("canada-central.azure.snowflakecomputing.com", "Azure Canada Central"),
-					new AllowableValue("west-europe.azure.snowflakecomputing.com", "Azure West Europe"),
-					new AllowableValue("australia-east.azure.snowflakecomputing.com", "Azure Australia East"),
-					new AllowableValue("southeast-asia.azure.snowflakecomputing.com", "Southeast Asia"))
-			.required(true)
-			.addValidator(StandardValidators.NON_EMPTY_VALIDATOR)
-			.build();
-	
 	public static final PropertyDescriptor ACCOUNT = new PropertyDescriptor
 			.Builder().name("Account")
-			.displayName("Snowflake account name")
-			.description("Snowflake account name")
+			.displayName("Fully qualified Snowflake account name")
+			.description("<account>.<region>.snowflakecomputing.com")
 			.required(true)
 			.addValidator(StandardValidators.NON_EMPTY_VALIDATOR)
 			.build();
@@ -152,7 +131,6 @@ public class SnowpipeIngest extends AbstractProcessor {
 	@Override
 	protected void init(final ProcessorInitializationContext context) {
 		final List<PropertyDescriptor> descriptors = new ArrayList<PropertyDescriptor>();
-		descriptors.add(REGION);
 		descriptors.add(ACCOUNT);
 		descriptors.add(USER);
 		descriptors.add(PIPE);
@@ -189,7 +167,6 @@ public class SnowpipeIngest extends AbstractProcessor {
 		}
 
 		final ComponentLog logger = getLogger();
-		final String host = context.getProperty(REGION).getValue();
 		final String account = context.getProperty(ACCOUNT).getValue();
 		final String user = context.getProperty(USER).toString();
 		final String pipe = context.getProperty(PIPE).evaluateAttributeExpressions(flowFile).getValue();
@@ -205,7 +182,8 @@ public class SnowpipeIngest extends AbstractProcessor {
 			final PrivateKey privateKey = kf.generatePrivate(keySpec);
 
 
-			SimpleIngestManager mgr = new SimpleIngestManager(account, user, pipe, privateKey, schemeName, account+"."+host, portNum);
+			String[] tmp = account.split("\\.");
+			SimpleIngestManager mgr = new SimpleIngestManager(tmp[0], user, pipe, privateKey, schemeName, account, portNum);
 			IngestResponse resp = mgr.ingestFile(new StagedFileWrapper(file), null);
 			//flowFile = session.putAttribute(flowFile, RESPONSE_ATT, resp.getResponseCode());
 			session.transfer(flowFile, REL_SUCCESS);
